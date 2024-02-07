@@ -1,0 +1,9 @@
+CREATE TABLE compressed_ledger_cache.glue_logs (
+    full_s3_path character varying(255) ENCODE lzo,
+    filename character varying(255) ENCODE lzo,
+    foldername character varying(255) ENCODE lzo,
+    status character varying(255) ENCODE lzo,
+    created_at timestamp without time zone ENCODE az64,
+    last_modified_date timestamp without time zone ENCODE az64,
+    error_description character varying(65535) ENCODE lzo
+) DISTSTYLE AUTO;

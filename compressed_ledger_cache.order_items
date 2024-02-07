@@ -1,0 +1,25 @@
+CREATE TABLE compressed_ledger_cache.order_items (
+    sf_order_item_id integer ENCODE az64,
+    sf_order_id integer ENCODE az64,
+    tax numeric(18, 6) ENCODE az64,
+    price numeric(18, 6) ENCODE az64,
+    quantity integer ENCODE az64,
+    row_created_at timestamp without time zone DEFAULT timezone(('utc':: character varying):: text, now()) ENCODE az64,
+    row_updated_at timestamp without time zone DEFAULT timezone(('utc':: character varying):: text, now()) ENCODE az64,
+    discount numeric(18, 6) ENCODE az64,
+    list_price numeric(18, 6) ENCODE az64,
+    tax_rate numeric(18, 6) ENCODE az64,
+    product_category character varying(255) ENCODE lzo,
+    original_sku character varying(255) ENCODE lzo,
+    parent_sku character varying(255) ENCODE lzo,
+    updatedby character varying(255) ENCODE lzo,
+    pipelinerunid character varying(255) ENCODE lzo,
+    s3filename character varying(255) ENCODE lzo,
+    s3filepath character varying(255) ENCODE lzo,
+    category character varying(255) ENCODE lzo,
+    linear_feet numeric(20, 8) ENCODE az64,
+    linear_yards numeric(20, 8) ENCODE az64,
+    op character varying(10) ENCODE lzo
+) DISTSTYLE AUTO
+SORTKEY
+    (sf_order_item_id);

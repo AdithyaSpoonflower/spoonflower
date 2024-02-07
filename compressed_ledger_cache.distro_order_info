@@ -1,0 +1,18 @@
+CREATE TABLE compressed_ledger_cache.distro_order_info (
+    sf_order_id integer NOT NULL ENCODE az64,
+    marketplace_order_id character varying(255) NOT NULL ENCODE lzo,
+    marketplace character varying(255) NOT NULL ENCODE lzo,
+    customer_id character varying(255) ENCODE lzo,
+    shop_platform character varying(255) ENCODE lzo,
+    shop_code character varying(255) ENCODE lzo,
+    shop_group character varying(255) ENCODE lzo,
+    customer_email character varying(255) ENCODE lzo,
+    sf_target_user_id integer ENCODE az64,
+    row_created_at timestamp without time zone DEFAULT timezone(('utc':: character varying):: text, now()) ENCODE az64,
+    row_updated_at timestamp without time zone DEFAULT timezone(('utc':: character varying):: text, now()) ENCODE az64,
+    updatedby character varying(255) ENCODE lzo,
+    pipelinerunid character varying(255) ENCODE lzo,
+    s3filename character varying(255) ENCODE lzo,
+    s3filepath character varying(255) ENCODE lzo,
+    op character varying(10) ENCODE lzo
+) DISTSTYLE AUTO;

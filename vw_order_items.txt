@@ -1,0 +1,27 @@
+CREATE
+OR REPLACE VIEW "compressed_ledger_cache"."vw_order_items" AS
+SELECT
+   coi.sf_order_item_id,
+   coi.sf_order_id,
+   po.exchange_rate,
+   coi.tax,
+   coi.tax / po.exchange_rate AS tax_usd,
+   coi.price,
+   coi.price / po.exchange_rate AS price_usd,
+   coi.discount,
+   coi.discount / po.exchange_rate AS discount_usd,
+   coi.list_price,
+   coi.list_price / po.exchange_rate AS list_price_usd,
+   coi.quantity,
+   coi.tax_rate,
+   coi.category,
+   coi.linear_feet,
+   coi.linear_yards,
+   coi.row_created_at,
+   coi.row_updated_at,
+   coi.product_category,
+   coi.original_sku,
+   coi.parent_sku
+FROM
+   order_items coi
+   LEFT JOIN public.fct_orders po ON po.id = coi.sf_order_id;

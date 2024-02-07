@@ -1,0 +1,18 @@
+CREATE TABLE compressed_ledger_cache.control_suspect_records (
+    suspect_id integer NOT NULL ENCODE az64,
+    pipelinerunid character varying(256) ENCODE lzo,
+    s33filename character varying(256) ENCODE lzo,
+    s3bucket character varying(256) ENCODE lzo,
+    target_table character varying(256) ENCODE lzo,
+    suspect_column character varying(256) ENCODE lzo,
+    suspect_column_value character varying(256) ENCODE lzo,
+    suspect_reason character varying(256) ENCODE lzo,
+    inserted_date timestamp without time zone ENCODE az64,
+    updated_date timestamp without time zone ENCODE az64,
+    corrected_flag character varying(256) ENCODE lzo,
+    suspect_column_corrected_value character varying(256) ENCODE lzo,
+    corrected_date timestamp without time zone ENCODE az64,
+    check_table character varying(256) ENCODE lzo,
+    check_type character varying(256) ENCODE lzo,
+    check_table_column character varying(256) ENCODE lzo
+) DISTSTYLE AUTO;
